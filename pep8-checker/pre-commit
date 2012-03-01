@@ -2,6 +2,7 @@
 import json
 import re
 import sys
+
 import pep8
 
 data = json.loads(sys.stdin.read())
@@ -37,13 +38,13 @@ for f in files:
 
     # Replace with our collector
     setattr(pep8, 'message', collector)
-    checker = pep8.Checker(f['name'])
+    checker = pep8.Checker(f['filename'])
     checker.check_all()
 
     out[f['name']] = collected
 
 # Finally, write to stdout the JSON encoded output
-print(json.dumps(out, indent=4))
+sys.stdout.write(json.dumps(out, indent=4))
 
 # Tell Git that the plugin ran successfully (according to design)
-exit(0)
+sys.exit(0)
