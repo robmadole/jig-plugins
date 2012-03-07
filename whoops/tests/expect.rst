@@ -106,7 +106,7 @@ But it can be turned off easily by editing the settings.
 
 .. plugin-settings::
 
-    check-windows-newlines = no
+    check_windows_newlines = no
 
 .. expectation::
     :from: 05

@@ -21,7 +21,7 @@ SMELLS = {
 data = json.loads(sys.stdin.read())
 files = data['files']
 config = data['config']
-check_windows_newlines = config.get('check-windows-newlines', 'yes') == 'yes'
+check_windows_newlines = config.get('check_windows_newlines', 'yes') == 'yes'
 
 out = {}
 
