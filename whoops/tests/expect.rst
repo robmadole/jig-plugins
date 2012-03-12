@@ -22,6 +22,9 @@ First let's see how it catches Vim stuff. This typically happens when a Vim
 user is in insert mode and they attempt to save and quit. The command for this
 in Vi/Vim is ``:wq``.
 
+Vim users aren't perfect
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. expectation::
     :from: 01
     :to: 02
@@ -33,6 +36,9 @@ in Vi/Vim is ``:wq``.
 
     Ran 1 plugin
         Info 0 Warn 1 Stop 0
+
+Debugger, prints, and consoles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A common thing when debugging Javascript or Python is to leave a ``debugger;``
 or ``pdb.set_trace()``.
@@ -88,6 +94,9 @@ it is generally for debugging as well.
     Ran 1 plugin
         Info 0 Warn 1 Stop 0
 
+Windows newlines
+~~~~~~~~~~~~~~~~
+
 It can detect Windows newlines.
 
 .. expectation::
@@ -114,7 +123,14 @@ But it can be turned off easily by editing the settings.
 
     Ran 1 plugin, nothing to report
 
+Merge markers
+~~~~~~~~~~~~~
+
 Lastly, it will find merge markers. These occur when you have a conflicted file
+
+.. plugin-settings::
+
+    check_windows_newlines = no
 
 .. expectation::
     :from: 06
@@ -130,3 +146,14 @@ Lastly, it will find merge markers. These occur when you have a conflicted file
 
     Ran 1 plugin
         Info 0 Warn 2 Stop 0
+
+Binary files
+~~~~~~~~~~~~
+
+Binary files are ignored because whitespace really isn't relevant for them.
+
+.. expectation::
+    :from: 07
+    :to: 08
+
+    Ran 1 plugin, nothing to report
