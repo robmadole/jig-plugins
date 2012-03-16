@@ -22,6 +22,10 @@ mtype = config['default_type']
 out = {}
 
 for f in files:
+    if f['type'] == 'deleted':
+        # File is deleted
+        continue
+
     if not f['name'].endswith('.py'):
         # Not a Python file
         continue

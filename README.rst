@@ -12,7 +12,7 @@ What do these plugins do?
   which was written by the Divmod developers)
 * Whitespace - look for lines with nothing but whitespace plus mixed tabs and
   spaces
-* Whoops - check for silly errors (like leaving a ``console.log(foo)`` in your
+* Woops - check for silly errors (like leaving a ``console.log(foo)`` in your
   JavaScript)
 
 Quick install

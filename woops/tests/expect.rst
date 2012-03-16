@@ -1,10 +1,10 @@
-Whoops
+woops
 ======
 
 This plugin is intended to catch some of the sillier things we as developers
 when we are either in a hurry or haven't reviewed our code carefully enough.
 
-The name "Whoops" comes from the common response when someone tells you that
+The name "woops" comes from the common response when someone tells you that
 you accidentally committed a file that contains the following:
 
 The plugin is heavily inspired by George Bandl's work with
@@ -29,7 +29,7 @@ Vim users aren't perfect
     :from: 01
     :to: 02
 
-    ▾  whoops
+    ▾  woops
 
     ⚠  line 1: README
         vim command
@@ -47,7 +47,7 @@ or ``pdb.set_trace()``.
     :from: 02
     :to: 03
 
-    ▾  whoops
+    ▾  woops
 
     ⚠  line 6: a.py
         pdb.set_trace()
@@ -68,7 +68,7 @@ This will catch either the statement (Python 2.x) or the function (Python 3.x).
     :from: 03
     :to: 04
 
-    ▾  whoops
+    ▾  woops
 
     ⚠  line 8: a.py
         print statement
@@ -86,7 +86,7 @@ it is generally for debugging as well.
     :from: 04
     :to: 05
 
-    ▾  whoops
+    ▾  woops
 
     ⚠  line 5: b.js
         javascript console usage
@@ -103,7 +103,7 @@ It can detect Windows newlines.
     :from: 05
     :to: 06
 
-    ▾  whoops
+    ▾  woops
 
     ⚠  README
         Contains Windows newlines
@@ -136,7 +136,7 @@ Lastly, it will find merge markers. These occur when you have a conflicted file
     :from: 06
     :to: 07
 
-    ▾  whoops
+    ▾  woops
 
     ⚠  line 3: README
         merge marker

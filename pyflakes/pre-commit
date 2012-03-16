@@ -48,6 +48,10 @@ def check(codeString, filename):
 
 
 for f in files:
+    if f['type'] == 'deleted':
+        # File is deleted
+        continue
+
     # Add a new key to our dictionary based on the filename
     out[f['name']] = []
 

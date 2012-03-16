@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import os
 from os.path import splitext
 import json
 import sys
@@ -45,6 +44,10 @@ def has_windows_newline(filename):
     return False
 
 for f in files:
+    if f['type'] == 'deleted':
+        # File is deleted
+        continue
+
     # Add a new key to our dictionary based on the filename
     out[f['name']] = []
 
