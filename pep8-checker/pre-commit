@@ -9,6 +9,10 @@ data = json.loads(sys.stdin.read())
 files = data['files']
 config = data['config']
 
+# Settings
+default_type = config.get('default_type', 'warn')
+report_E501 = True if config.get('report_e501', 'yes') == 'yes' else False
+
 # Initialize the pep8 options, this is needed to make everything work
 options, args = pep8.process_options(['pep8'])
 
@@ -18,7 +22,6 @@ message_breaker = re.compile(r'''
     (?P<column>[0-9]+):
     \ (?P<message>.+)''', re.VERBOSE)
 
-mtype = config['default_type']
 out = {}
 
 for f in files:
@@ -30,6 +33,8 @@ for f in files:
         # Not a Python file
         continue
 
+    lines = [i for i in f['diff'] if i[1] != '-']
+
     collected = []
 
     def collector(message):
@@ -37,8 +42,13 @@ for f in files:
         if not match:
             return
         parts = match.groupdict()
-        collected.append([parts['line'], mtype, '{}\n     - {}'.format(
-            f['diff'][int(parts['line']) - 1][2].strip(), parts['message'])])
+
+        if not report_E501 and 'E501' in parts['message']:
+            # We are not supposed to report this
+            return
+
+        collected.append([parts['line'], default_type, '{}\n     - {}'.format(
+            lines[int(parts['line']) - 1][2].strip(), parts['message'])])
 
     # Replace with our collector
     setattr(pep8, 'message', collector)

@@ -77,3 +77,33 @@ And if we fix the errors that are listed, the plugin is quiet.
     :to: 03
 
     Ran 1 plugin, nothing to report
+
+Turning off the character limit
+-------------------------------
+
+Normally the pep8-checker will complain about lines that are too long.
+
+.. expectation::
+    :from: 03
+    :to: 04
+
+    ▾  pep8-checker
+
+    ⚠  line 18: celcius.py
+        print 'Your result, which I have gladly prepared is %i\260F = %i\260C' % (int(fahrenheit), int(celsius + .5))
+         - E501 line too long (117 characters)
+
+    Ran 1 plugin
+        Info 0 Warn 1 Stop 0
+
+But this can be turned off.
+
+.. plugin-settings::
+
+    report_e501 = no
+
+.. expectation::
+    :from: 03
+    :to: 04
+
+    Ran 1 plugin, nothing to report
