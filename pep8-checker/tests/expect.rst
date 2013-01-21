@@ -23,6 +23,10 @@ Example output:
         try:
          - W291 trailing whitespace
 
+    ⚠  line 12: celcius.py
+        fahrenheit=float(string.atoi(i))
+         - E225 missing whitespace around operator
+
     ⚠  line 14: celcius.py
         print repr(i), "not a numeric value"
          - W191 indentation contains tabs
@@ -31,8 +35,44 @@ Example output:
         print repr(i), "not a numeric value"
          - E101 indentation contains mixed spaces and tabs
 
+    ⚠  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - W191 indentation contains tabs
+
+    ⚠  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E101 indentation contains mixed spaces and tabs
+
+    ⚠  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E225 missing whitespace around operator
+
+    ⚠  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E226 missing optional whitespace around operator
+
+    ⚠  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E226 missing optional whitespace around operator
+
+    ⚠  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E226 missing optional whitespace around operator
+
+    ⚠  line 17: celcius.py
+        print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
+         - W191 indentation contains tabs
+
+    ⚠  line 17: celcius.py
+        print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
+         - E101 indentation contains mixed spaces and tabs
+
+    ⚠  line 17: celcius.py
+        print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
+         - E226 missing optional whitespace around operator
+
     Ran 1 plugin
-        Info 0 Warn 5 Stop 0
+        Info 0 Warn 15 Stop 0
 
 By default, the messages will be warning. You can change them to stop messages
 by adjusting the settings for the plugin.
@@ -59,6 +99,10 @@ by adjusting the settings for the plugin.
         try:
          - W291 trailing whitespace
 
+    ✕  line 12: celcius.py
+        fahrenheit=float(string.atoi(i))
+         - E225 missing whitespace around operator
+
     ✕  line 14: celcius.py
         print repr(i), "not a numeric value"
          - W191 indentation contains tabs
@@ -67,8 +111,44 @@ by adjusting the settings for the plugin.
         print repr(i), "not a numeric value"
          - E101 indentation contains mixed spaces and tabs
 
+    ✕  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - W191 indentation contains tabs
+
+    ✕  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E101 indentation contains mixed spaces and tabs
+
+    ✕  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E225 missing whitespace around operator
+
+    ✕  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E226 missing optional whitespace around operator
+
+    ✕  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E226 missing optional whitespace around operator
+
+    ✕  line 16: celcius.py
+        celsius=(fahrenheit-32)*5.0/9.0
+         - E226 missing optional whitespace around operator
+
+    ✕  line 17: celcius.py
+        print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
+         - W191 indentation contains tabs
+
+    ✕  line 17: celcius.py
+        print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
+         - E101 indentation contains mixed spaces and tabs
+
+    ✕  line 17: celcius.py
+        print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
+         - E226 missing optional whitespace around operator
+
     Ran 1 plugin
-        Info 0 Warn 0 Stop 5
+        Info 0 Warn 0 Stop 15
 
 And if we fix the errors that are listed, the plugin is quiet.
 
@@ -91,7 +171,7 @@ Normally the pep8-checker will complain about lines that are too long.
 
     ⚠  line 18: celcius.py
         print 'Your result, which I have gladly prepared is %i\260F = %i\260C' % (int(fahrenheit), int(celsius + .5))
-         - E501 line too long (117 characters)
+         - E501 line too long (117 > 79 characters)
 
     Ran 1 plugin
         Info 0 Warn 1 Stop 0

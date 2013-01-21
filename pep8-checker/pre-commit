@@ -2,8 +2,11 @@
 import json
 import re
 import sys
+from pprint import PrettyPrinter
 
 import pep8
+
+pp = PrettyPrinter().pprint
 
 data = json.loads(sys.stdin.read())
 files = data['files']
@@ -24,6 +27,25 @@ message_breaker = re.compile(r'''
 
 out = {}
 
+
+class JigReporter(pep8.BaseReport):
+
+    """
+    Custom pep8 reporter to collect the errors in a compatible format.
+
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(JigReporter, self).__init__(*args, **kwargs)
+
+        self.collected = []
+
+    def error(self, line_number, offset, text, check):
+        if 'E501' in text and not report_E501:
+            return
+        self.collected.append([line_number, default_type, '{}\n     - {}'.format(
+                self.lines[int(line_number) - 1].strip(), text)])
+
 for f in files:
     if f['type'] == 'deleted':
         # File is deleted
@@ -33,29 +55,14 @@ for f in files:
         # Not a Python file
         continue
 
-    lines = [i for i in f['diff'] if i[1] != '-']
+    pep8style = pep8.StyleGuide(parse_argv=False, config_file=False)
+    options = pep8style.options
+    report = JigReporter(options)
 
-    collected = []
-
-    def collector(message):
-        match = message_breaker.search(message)
-        if not match:
-            return
-        parts = match.groupdict()
-
-        if not report_E501 and 'E501' in parts['message']:
-            # We are not supposed to report this
-            return
-
-        collected.append([parts['line'], default_type, '{}\n     - {}'.format(
-            lines[int(parts['line']) - 1][2].strip(), parts['message'])])
-
-    # Replace with our collector
-    setattr(pep8, 'message', collector)
-    checker = pep8.Checker(f['filename'])
+    checker = pep8.Checker(f['filename'], options=options, report=report)
     checker.check_all()
 
-    out[f['name']] = collected
+    out[f['name']] = report.collected
 
 # Finally, write to stdout the JSON encoded output
 sys.stdout.write(json.dumps(out, indent=4))
