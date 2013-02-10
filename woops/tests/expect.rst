@@ -157,3 +157,20 @@ Binary files are ignored because whitespace really isn't relevant for them.
     :to: 08
 
     Ran 1 plugin, nothing to report
+
+Limiting the number of messages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If we have a lot of messages for a single file, stop at a certain threshold.
+
+.. expectation::
+    :from: 08
+    :to: 09
+
+    ▾  woops
+
+    ⚠  b.js
+        Lots of woops here (over 50) ignoring
+
+    Ran 1 plugin
+        Info 0 Warn 1 Stop 0

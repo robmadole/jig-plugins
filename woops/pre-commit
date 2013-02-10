@@ -17,6 +17,10 @@ SMELLS = {
         (re.compile(r'^\s*debugger;'), 'javascript debugger'),
         (re.compile(r'^\s*console\.'), 'javascript console usage')]}
 
+REPORTING_LIMIT = 50
+REPORTING_LIMIT_WARNING = 'Lots of woops here (over {}) ignoring'.format(
+    REPORTING_LIMIT)
+
 data = json.loads(sys.stdin.read())
 files = data['files']
 config = data['config']
@@ -71,6 +75,13 @@ for f in files:
             rex, message = check
             if rex.search(content):
                 out[f['name']].append((line, 'warn', message))
+
+    for filename in out.keys():
+        messages = out[filename]
+        if len(messages) > REPORTING_LIMIT:
+            del messages[:]
+            messages.append(('warn', REPORTING_LIMIT_WARNING))
+
 
 # Finally, write to stdout the JSON encoded output
 sys.stdout.write(json.dumps(out, indent=4))
