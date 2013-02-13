@@ -43,8 +43,9 @@ class JigReporter(pep8.BaseReport):
     def error(self, line_number, offset, text, check):
         if 'E501' in text and not report_E501:
             return
-        self.collected.append([line_number, default_type, '{}\n     - {}'.format(
-                self.lines[int(line_number) - 1].strip(), text)])
+        self.collected.append(
+            [line_number, default_type, '{0}\n     - {1}'.format(
+            self.lines[int(line_number) - 1].strip(), text)])
 
 for f in files:
     if f['type'] == 'deleted':

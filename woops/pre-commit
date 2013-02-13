@@ -18,7 +18,7 @@ SMELLS = {
         (re.compile(r'^\s*console\.'), 'javascript console usage')]}
 
 REPORTING_LIMIT = 50
-REPORTING_LIMIT_WARNING = 'Lots of woops here (over {}) ignoring'.format(
+REPORTING_LIMIT_WARNING = 'Lots of woops here (over {0}) ignoring'.format(
     REPORTING_LIMIT)
 
 data = json.loads(sys.stdin.read())
