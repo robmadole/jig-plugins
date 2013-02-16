@@ -71,9 +71,6 @@ Example output:
         print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
          - E226 missing optional whitespace around operator
 
-    Ran 1 plugin
-        Info 0 Warn 15 Stop 0
-
 By default, the messages will be warning. You can change them to stop messages
 by adjusting the settings for the plugin.
 
@@ -147,16 +144,11 @@ by adjusting the settings for the plugin.
         print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
          - E226 missing optional whitespace around operator
 
-    Ran 1 plugin
-        Info 0 Warn 0 Stop 15
-
 And if we fix the errors that are listed, the plugin is quiet.
 
 .. expectation::
     :from: 02
     :to: 03
-
-    Ran 1 plugin, nothing to report
 
 Turning off the character limit
 -------------------------------
@@ -173,9 +165,6 @@ Normally the pep8-checker will complain about lines that are too long.
         print 'Your result, which I have gladly prepared is %i\260F = %i\260C' % (int(fahrenheit), int(celsius + .5))
          - E501 line too long (117 > 79 characters)
 
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0
-
 But this can be turned off.
 
 .. plugin-settings::
@@ -185,5 +174,3 @@ But this can be turned off.
 .. expectation::
     :from: 03
     :to: 04
-
-    Ran 1 plugin, nothing to report

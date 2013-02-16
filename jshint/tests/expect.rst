@@ -28,16 +28,11 @@ If we leave a semicolon off a line, that's the kind of thing that JSHint will ca
     ⚠  line 2: a.js
         Unused variable: test
 
-    Ran 1 plugin
-        Info 0 Warn 3 Stop 0
-
 Fixing this problem quiets things down.
 
 .. expectation::
     :from: 02
     :to: 03
-
-    Ran 1 plugin, nothing to report
 
 It will ignore any file that doesn't end in ``.js``
 
@@ -45,16 +40,12 @@ It will ignore any file that doesn't end in ``.js``
     :from: 03
     :to: 04
 
-    Ran 1 plugin, nothing to report
-
 And one of the unit tests that passes from the JSHint project passes just fine
 in this plugin as well.
 
 .. expectation::
     :from: 04
     :to: 05
-
-    Ran 1 plugin, nothing to report
 
 One of the failing tests shows each error.
 
@@ -88,9 +79,6 @@ One of the failing tests shows each error.
     ⚠  line 8: strict_violations.js
         Unused variable: callCaller
 
-    Ran 1 plugin
-        Info 0 Warn 7 Stop 0
-
 Can find only warning about unused variables.
 
 .. expectation::
@@ -116,6 +104,3 @@ Can find only warning about unused variables.
 
     ⚠  line 21: unused.js
         Unused variable: i
-
-    Ran 1 plugin
-        Info 0 Warn 6 Stop 0

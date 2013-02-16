@@ -34,9 +34,6 @@ Vim users aren't perfect
     ⚠  line 1: README
         vim command
 
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0
-
 Debugger, prints, and consoles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -54,9 +51,6 @@ or ``pdb.set_trace()``.
 
     ⚠  line 3: b.js
         javascript debugger
-
-    Ran 1 plugin
-        Info 0 Warn 2 Stop 0
 
 This one is a little contraversial. It detects ``print`` or ``sprint``
 statements. There are plenty of valid use cases where ``print`` is perfectly
@@ -76,9 +70,6 @@ This will catch either the statement (Python 2.x) or the function (Python 3.x).
     ⚠  line 9: a.py
         print statement
 
-    Ran 1 plugin
-        Info 0 Warn 2 Stop 0
-
 We can do a similar thing for Javascript. When developers use ``console.log``
 it is generally for debugging as well.
 
@@ -90,9 +81,6 @@ it is generally for debugging as well.
 
     ⚠  line 5: b.js
         javascript console usage
-
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0
 
 Windows newlines
 ~~~~~~~~~~~~~~~~
@@ -108,9 +96,6 @@ It can detect Windows newlines.
     ⚠  README
         Contains Windows newlines
 
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0
-
 But it can be turned off easily by editing the settings.
 
 .. plugin-settings::
@@ -120,8 +105,6 @@ But it can be turned off easily by editing the settings.
 .. expectation::
     :from: 05
     :to: 06
-
-    Ran 1 plugin, nothing to report
 
 Merge markers
 ~~~~~~~~~~~~~
@@ -144,9 +127,6 @@ Lastly, it will find merge markers. These occur when you have a conflicted file
     ⚠  line 7: README
         merge marker
 
-    Ran 1 plugin
-        Info 0 Warn 2 Stop 0
-
 Binary files
 ~~~~~~~~~~~~
 
@@ -155,8 +135,6 @@ Binary files are ignored because whitespace really isn't relevant for them.
 .. expectation::
     :from: 07
     :to: 08
-
-    Ran 1 plugin, nothing to report
 
 Limiting the number of messages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -171,6 +149,3 @@ If we have a lot of messages for a single file, stop at a certain threshold.
 
     ⚠  b.js
         Lots of woops here (over 50) ignoring
-
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0

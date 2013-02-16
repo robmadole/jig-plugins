@@ -20,9 +20,6 @@ of smart indent.
     ⚠  line 9: README
         is nothing but whitespace
 
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0
-
 Whitespace at the end of a paragraph can sometimes be caused by bad paragraph
 breaks.
 
@@ -35,9 +32,6 @@ breaks.
     ⚠  line 10: README
         ends with whitespace
 
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0
-
 Mixing tabs and spaces makes everyone unhappy. That can be caught too.
 
 .. expectation::
@@ -48,6 +42,3 @@ Mixing tabs and spaces makes everyone unhappy. That can be caught too.
 
     ⚠  README
         has a mix of tabs and spaces
-
-    Ran 1 plugin
-        Info 0 Warn 1 Stop 0
