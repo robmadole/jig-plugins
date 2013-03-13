@@ -68,7 +68,7 @@ processDataOutputJigFormat = function (data) {
             thisFileErrors.push([line, 'w', reason]);
         });
 
-        jshintData.unused.forEach(function (unused) {
+        (jshintData.unused || []).forEach(function (unused) {
             thisFileErrors.push([unused.line, 'w', 'Unused variable: ' + unused.name]);
         });
     });
