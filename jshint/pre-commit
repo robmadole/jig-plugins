@@ -62,8 +62,16 @@ processDataOutputJigFormat = function (data) {
         }
 
         (jshintData.errors || []).forEach(function (error) {
-            var reason = error.evidence + '\n    ' + error.reason + ' @ chr ' + error.character,
-                line   = error.line;
+            var reason,
+                line;
+
+            try {
+                reason = error.evidence + '\n    ' + error.reason + ' @ chr ' + error.character;
+                line = error.line;
+            } catch (e) {
+                thisFileErrors.push(e)
+                return;
+            }
 
             thisFileErrors.push([line, 'w', reason]);
         });
