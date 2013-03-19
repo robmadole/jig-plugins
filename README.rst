@@ -1,6 +1,8 @@
 Jig Plugins
 ===========
 
+.. image:: https://api.travis-ci.org/robmadole/jig-plugins.png
+
 This repo contains a collection of plugins written for the `Jig tool`_.
 
 What do these plugins do?
