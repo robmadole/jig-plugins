@@ -65,11 +65,15 @@ processDataOutputJigFormat = function (data) {
             var reason,
                 line;
 
+            if (!error) {
+                return;
+            }
+
             try {
                 reason = error.evidence + '\n    ' + error.reason + ' @ chr ' + error.character;
                 line = error.line;
             } catch (e) {
-                thisFileErrors.push(e)
+                thisFileErrors.push(e.toString())
                 return;
             }
 
