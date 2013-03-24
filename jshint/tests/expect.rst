@@ -104,3 +104,14 @@ Can find only warning about unused variables.
 
     ⚠  line 21: unused.js
         Unused variable: i
+
+Skips files that have been minimized.
+
+.. expectation::
+    :from: 07
+    :to: 08
+
+    ▾  jshint
+
+    ✓  jquery-1.9.1.min.js
+        Skipping file, it appears to be minified

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-var fs       = require('fs'),
-    util     = require('util'),
-    encoding = 'utf-8',
-    JSHINT   = require('./jshint.js').JSHINT,
-    data     = '',
-    processDataOutputJigFormat;
+var fs                 = require('fs'),
+    util               = require('util'),
+    encoding           = 'utf-8',
+    JSHINT             = require('./jshint.js').JSHINT,
+    data               = '',
+    processDataOutputJigFormat,
+    PROBABLY_MINIMIZED = 500;
 
 // Polyfill
 if (typeof String.prototype.endsWith !== 'function') {
@@ -50,9 +51,16 @@ processDataOutputJigFormat = function (data) {
 
         contents = fs.readFileSync(filename, encoding);
 
+        messages[file.name] = thisFileErrors = [];
+
+        // Does this appear to be minimized?
+        if (contents.length / (contents.split('\n').length || 1) > PROBABLY_MINIMIZED) {
+            thisFileErrors.push(['Skipping file, it appears to be minified']);
+            return;
+        }
+
         JSHINT(contents);
 
-        messages[file.name] = thisFileErrors = [];
 
         jshintData = JSHINT.data();
 
