@@ -1,0 +1,124 @@
+#!/usr/bin/env python
+import sys
+import json
+import pickle
+from random import choice
+
+# To get a fresh list of Chuck Norris facts, do the following:
+#
+# $ mkvirtualenv chucknorris
+# $ pip install beautifulsoup4 requests
+# $ python readfacts.py
+#
+# Then replace the contents of the pickle.loads with the new value.
+
+facts = pickle.loads("""
+(lp0
+VChuck Norris once won a radio contest just by picking up his phone and say his name. And the phone didn't even ring.
+p1
+aVWhen Alexander Bell invented the telephone he had 3 missed calls from Chuck Norris
+p2
+aVFear of spiders is aracnaphobia, fear of tight spaces is chlaustraphobia, fear of Chuck Norris is called Logic
+p3
+aVChuck Norris doesn't call the wrong number. You answer the wrong phone.
+p4
+aVThere used to be a street named after Chuck Norris, but it was changed because nobody crosses Chuck Norris and lives.
+p5
+aVChuck Norris has a grizzly bear carpet in his room. The bear isn't dead it is just afriad to move.
+p6
+aVChuck Norris died 20 years ago, Death just hasn't built up the courage to tell him yet.
+p7
+aVIf you rate this 5 roundhouse kicks, then Chuck Norris WILL roundhouse kick Justin Bieber's ass.
+p8
+aVChuck Norris has already been to Mars; that's why there are no signs of life.
+p9
+aVSome magicans can walk on water, Chuck Norris can swim through land.
+p10
+aVChuck Norris and Superman once fought each other on a bet. The loser had to start wearing his underwear on the outside of his pants.
+p11
+aVChuck Norris can cut through a hot knife with butter
+p12
+aVChuck Norris doesn't flush the toilet, he scares the sh*t out of it
+p13
+aVChuck Norris once urinated in a semi truck's gas tank as a joke....that truck is now known as Optimus Prime.
+p14
+aVOnce the cop pulled over Chuck Norris....the cop was lucky to leave with a warning.
+p15
+aVDeath once had a near-Chuck Norris experience
+p16
+aVChuck Norris counted to infinity - twice.
+p17
+aVChuck Norris is the reason why Waldo is hiding.
+p18
+aVGhosts sit around the campfire and tell Chuck Norris stories.
+p19
+aVChuck Norris can slam a revolving door.
+p20
+aVWhen the Boogeyman goes to sleep every night, he checks his closet for Chuck Norris.
+p21
+aVChuck Norris will never have a heart attack. His heart isn't nearly foolish enough to attack him.
+p22
+aVChuck Norris once kicked a horse in the chin. Its decendants are known today as Giraffes.
+p23
+aVChuck Norris can win a game of Connect Four in only three moves.
+p24
+aVChuck Norris once got bit by a rattle snake........ After three days of pain and agony ..................the rattle snake died
+p25
+aVIn court, the judge calls Chuck Norris "Your Honor."
+p26
+aVThere is no theory of evolution. Just a list of animals Chuck Norris allows to live.
+p27
+aVWhen Chuck Norris does a pushup, he isn't lifting himself up, he's pushing the Earth down.
+p28
+aVChuck Norris can light a fire by rubbing two ice-cubes together.
+p29
+aVThe original title for Alien vs. Predator was Alien and Predator vs Chuck Norris.
+p30
+aVChuck Norris won American Idol using only sign language
+p31
+aVChuck Norris' hand is the only hand that can beat a Royal Flush.
+p32
+aVChuck Norris doesn't read books. He stares them down until he gets the information he wants.
+p33
+aVThere is no theory of evolution. Just a list of creatures Chuck Norris has allowed to live.
+p34
+aVChuck Norris doesn\u2019t wear a watch. HE decides what time it is.
+p35
+aVChuck Norris does not sleep. He waits.
+p36
+aVChuck Norris made a Happy Meal cry.
+p37
+aVChuck Norris can leave a message before the beep.
+p38
+aVOuter space exists because it's afraid to be on the same planet with Chuck Norris.
+p39
+aVChuck Norris killed his living room. It is now just "the room".
+p40
+aVDeath once had a near Chuck Norris experience. Death still won't talk about it.
+p41
+aVChuck Norris calls push-ups "earth downs".
+p42
+aVChuck Norris was in all 6 star wars films as THE FORCE
+p43
+aVChuck Norris donates blood to NASA for rocket fuel.
+p44
+aVChuck Norris doesn't fall, he merely tests the durability of the floor with his face.
+p45
+aVChuck Norris can literally kill time.
+p46
+aVIf Chuck Norris ever got caught for speeding, he'd let the cops off with a warning.
+p47
+aVSome people wear Superman pajamas. Superman wears Chuck Norris pajamas.
+p48
+aVChuck Norris knows the last digit of pi.
+p49
+aVIf you spell Chuck Norris in Scrabble, you win. Forever.
+p50
+a.
+""".strip())
+
+# Finally, write to stdout the JSON encoded output
+sys.stdout.write(json.dumps(choice(facts), indent=4))
+
+# Tell Git that the plugin ran successfully (according to design)
+sys.exit(0)
