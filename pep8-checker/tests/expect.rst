@@ -49,15 +49,15 @@ Example output:
 
     ⚠  line 16: celcius.py
         celsius=(fahrenheit-32)*5.0/9.0
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
     ⚠  line 16: celcius.py
         celsius=(fahrenheit-32)*5.0/9.0
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
     ⚠  line 16: celcius.py
         celsius=(fahrenheit-32)*5.0/9.0
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
     ⚠  line 17: celcius.py
         print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
@@ -69,7 +69,7 @@ Example output:
 
     ⚠  line 17: celcius.py
         print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
 By default, the messages will be warning. You can change them to stop messages
 by adjusting the settings for the plugin.
@@ -122,15 +122,15 @@ by adjusting the settings for the plugin.
 
     ✕  line 16: celcius.py
         celsius=(fahrenheit-32)*5.0/9.0
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
     ✕  line 16: celcius.py
         celsius=(fahrenheit-32)*5.0/9.0
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
     ✕  line 16: celcius.py
         celsius=(fahrenheit-32)*5.0/9.0
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
     ✕  line 17: celcius.py
         print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
@@ -142,7 +142,7 @@ by adjusting the settings for the plugin.
 
     ✕  line 17: celcius.py
         print '%i\260F = %i\260C' % (int(fahrenheit), int(celsius+.5))
-         - E226 missing optional whitespace around operator
+         - E226 missing whitespace around arithmetic operator
 
 And if we fix the errors that are listed, the plugin is quiet.
 
