@@ -46,7 +46,7 @@ def get_message(out, report_type, graph):
     return (
         graph.lineno,
         report_type,
-        '{!r} complexity is {complexity}'.format(graph.entity, complexity=graph.complexity())
+        '{0!r} complexity is {complexity}'.format(graph.entity, complexity=graph.complexity())
     )
 
 
