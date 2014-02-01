@@ -9,7 +9,7 @@ What does it do?
 ----------------
 
 Uses `Florent Xicluna's library`_ to measure code complexity. The original
-source came from `Ned Batchelder's implementation` using the McCabe code
+source came from `Ned Batchelder's implementation`_ using the McCabe code
 complexity method.
 
 Quick install
