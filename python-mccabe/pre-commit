@@ -1,0 +1,112 @@
+#!/usr/bin/env python
+import json
+import re
+import sys
+import ast
+import collections
+import functools
+from pprint import PrettyPrinter
+
+import mccabe
+
+
+def candidate_for_mccabe(f):
+    if f['type'] == 'deleted':
+        # File is deleted
+        return False
+
+    if not f['name'].endswith('.py'):
+        # Not a Python file
+        return False
+
+    return True
+
+
+def config_get_as_int(config, key, default=0):
+    try:
+        return int(config.get(key, default))
+    except (TypeError, ValueError):
+        return default
+
+
+def get_report_type(complexity, warn_threshold, stop_threshold):
+    if not complexity:
+        return None
+
+    if complexity >= stop_threshold:
+        return 's'
+
+    if complexity >= warn_threshold:
+        return 'w'
+
+    return None
+
+
+def get_message(out, report_type, graph):
+    return (
+        graph.lineno,
+        report_type,
+        '{!r} complexity is {complexity}'.format(graph.entity, complexity=graph.complexity())
+    )
+
+
+def get_ast_visitor(filename):
+    with open(filename, "rU") as mod:
+        code = mod.read()
+    tree = compile(code, filename, "exec", ast.PyCF_ONLY_AST)
+    visitor = mccabe.PathGraphingAstVisitor()
+    visitor.preorder(tree, visitor)
+
+    return visitor
+
+
+def report_mccabe_complexity(files, warn_threshold, stop_threshold):
+    out = collections.defaultdict(list)
+
+    for f in files:
+        if not candidate_for_mccabe(f):
+            continue
+
+        visitor = get_ast_visitor(f['filename'])
+
+        for graph in visitor.graphs.values():
+            complexity = graph.complexity()
+
+            report_type = get_report_type(complexity, warn_threshold, stop_threshold)
+
+            if report_type:
+                out[f['name']].append(get_message(out, report_type, graph))
+
+    return out
+
+
+def sort_output_by_line_number(out):
+    sorted_out = {}
+
+    for name, messages in out.items():
+        new_messages = messages[:]
+
+        sorted_out[name] = sorted(new_messages, key=lambda message: message[0])
+
+    return sorted_out
+
+
+data = json.loads(sys.stdin.read())
+files = data['files']
+config = data['config']
+
+warn_threshold = functools.partial(config_get_as_int, config, 'warn_threshold', default=8)
+stop_threshold = functools.partial(config_get_as_int, config, 'stop_threshold', default=11)
+
+out = sort_output_by_line_number(
+    report_mccabe_complexity(files, warn_threshold(), stop_threshold())
+)
+
+# Finally, write to stdout the JSON encoded output
+sys.stdout.write(json.dumps(
+    out,
+    indent=4
+))
+
+# Tell Git that the plugin ran successfully (according to design)
+sys.exit(0)
