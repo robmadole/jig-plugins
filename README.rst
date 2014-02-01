@@ -8,15 +8,17 @@ This repo contains a collection of plugins written for the `Jig tool`_.
 Available plugins
 -----------------
 
-| Name           | Purpose                                                | Language   |
-| -------------- | ------------------------------------------------------ | ---------: |
-| woops          | Catch silly errors                                     | All        |
-| whitespace     | Keep whitespace nice and clean                         | All        |
-| pep8-checker   | Check sources files for PEP8 adherence                 | Python     |
-| pyflakes       | Use PyFlakes to lint Python files                      | Python     |
-| python-mccabe  | Calculate code complexity using McCabe                 | Python     |
-| jshint         | Run the jshint tool on you JavaScript files            | JavaScript |
-| chucknorris    | Learn something new about Chuck Norris on each commit  | Humor      |
+============== ======================================================= ============
+Name           Purpose                                                 Language
+============== ======================================================= ============
+woops          Catch silly errors                                      All
+whitespace     Keep whitespace nice and clean                          All
+pep8-checker   Check sources files for PEP8 adherence                  Python
+pyflakes       Use PyFlakes to lint Python files                       Python
+python-mccabe  Calculate code complexity using McCabe                  Python
+jshint         Run the jshint tool on you JavaScript files             JavaScript
+chucknorris    Learn something new about Chuck Norris on each commit   Humor
+============== ======================================================= ============
 
 Convenient install lists
 ------------------------
