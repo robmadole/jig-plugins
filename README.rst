@@ -5,22 +5,37 @@ Jig Plugins
 
 This repo contains a collection of plugins written for the `Jig tool`_.
 
-What do these plugins do?
--------------------------
+Available plugins
+-----------------
 
-* PEP8 checker - check your code for adherence to the `PEP8`_ standard (this
-  `uses a tool`_ created by Johann Rochol)
-* Pyflakes - analyze Python files and check for various erros (uses `pyflakes`_
-  which was written by the Divmod developers)
-* Whitespace - look for lines with nothing but whitespace plus mixed tabs and
-  spaces
-* Woops - check for silly errors (like leaving a ``console.log(foo)`` in your
-  JavaScript)
+| Name           | Purpose                                                | Language   |
+| -------------- | ------------------------------------------------------ | ---------: |
+| woops          | Catch silly errors                                     | All        |
+| whitespace     | Keep whitespace nice and clean                         | All        |
+| pep8-checker   | Check sources files for PEP8 adherence                 | Python     |
+| pyflakes       | Use PyFlakes to lint Python files                      | Python     |
+| python-mccabe  | Calculate code complexity using McCabe                 | Python     |
+| jshint         | Run the jshint tool on you JavaScript files            | JavaScript |
+| chucknorris    | Learn something new about Chuck Norris on each commit  | Humor      |
 
-Quick install
--------------
+Convenient install lists
+------------------------
 
-You need Jig to use these plugins. Install it with this:
+The following files can be used to install multiple plugins at the same time.
+
+For any language
+  https://raw.github.com/robmadole/jig-plugins/lists/common.txt
+
+Python
+  https://raw.github.com/robmadole/jig-plugins/lists/python.txt
+
+JavaScript
+  https://raw.github.com/robmadole/jig-plugins/lists/javascript.txt
+
+To use these plugins
+--------------------
+
+Install Jig first:
 
 ::
 
@@ -33,15 +48,8 @@ And then you can setup your Git repository to use Jig with this:
     $ cd myrepo
     $ jig init .
 
-Install the plugins:
-
-::
-
-    $ jig plugin add http://github.com/robmadole/jig-plugins
+Follow the instructions to install any of the Jig plugins.
 
 `Read the Jig documentation to find out more <http://packages.python.org/jig>`_.
 
 .. _Jig tool: http://github.com/robmadole/jig
-.. _PEP8: http://www.python.org/dev/peps/pep-0008/
-.. _uses a tool: http://pypi.python.org/pypi/pep8
-.. _pyflakes: http://pypi.python.org/pypi/pyflakes
