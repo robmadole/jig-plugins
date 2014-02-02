@@ -34,5 +34,6 @@ Install the plugins:
 
 `Read the Jig documentation to find out more <http://packages.python.org/jig>`_.
 
+.. _Jig tool: http://github.com/robmadole/jig
 .. _JSHint: http://www.jshint.com
 .. _uses a tool: http://pypi.python.org/pypi/pep8
