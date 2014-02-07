@@ -1,7 +1,7 @@
 Python McCabe
 =============
 
-.. image:: https://api.travis-ci.org/robmadole/jig-plugins.png?branch=pep8-checker
+.. image:: https://api.travis-ci.org/robmadole/jig-plugins.png?branch=python-mccabe
 
 This plugin is written for the `Jig tool`_.
 
