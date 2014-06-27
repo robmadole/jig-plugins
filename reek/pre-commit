@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+# Add our libraries to the load path
+%w{reek ruby_parser sexp_processor ruby2ruby}.each do |vendor|
+    $LOAD_PATH << "#{File.dirname __FILE__}/vendor/#{vendor}/lib"
+end
+
+require 'json'
+require 'reek'
+
+# Uses Reek to examine a list of Jig files and report any smelly Ruby code
+module ReekJigPlugin
+
+  # Collects messages and formats them to JSON in the Jig-compatible format
+  class Messages
+    def initialize
+      @messages = {}
+      @type     = 'w'
+    end
+
+    def add(file, line, message)
+      @messages[file] ||= []
+      @messages[file] << [line, @type, message]
+    end
+
+    def to_json
+      @messages.each_value do |file_messages|
+        file_messages.sort! { |a, b| a[0] <=> b[0] }
+      end
+
+      JSON.dump(@messages)
+    end
+  end
+
+  class << self
+    def sniff(files)
+      messages = Messages.new
+
+      only_care_about(files).each do |file|
+        examiner = Reek::Examiner.new [file['filename']]
+        examiner.smells.each do |smell|
+          messages.add(
+            file['name'],
+            smell.location['lines'].first,
+            "#{smell.location['context']} #{smell.message} (#{smell_name(smell)})"
+          )
+        end
+      end
+
+      messages
+    end
+
+    private
+
+    # Get only the files that we care about
+    def only_care_about(files)
+      # Only Ruby files
+      only_ruby = files.select { |file| file['name'].end_with? '.rb' }
+
+      # Just the files that were added or modified
+      only_ruby.select { |file| ['added', 'modified'].include? file['type'] }
+    end
+
+    def smell_name(smell_warning)
+      smell = smell_warning.smell
+
+      names = [smell['class']]
+
+      names << smell['subclass'] unless smell['class'] == smell['subclass']
+
+      names.join ', '
+    end
+  end
+end
+
+input = JSON.parse($stdin.read)
+messages = ReekJigPlugin.sniff input['files']
+
+puts messages.to_json
