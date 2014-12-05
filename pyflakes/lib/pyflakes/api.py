@@ -6,7 +6,6 @@ from __future__ import with_statement
 import sys
 import os
 import _ast
-from optparse import OptionParser
 
 from pyflakes import checker, __version__
 from pyflakes import reporter as modReporter
@@ -74,7 +73,16 @@ def checkPath(filename, reporter=None):
     if reporter is None:
         reporter = modReporter._makeDefaultReporter()
     try:
-        with open(filename, 'rb') as f:
+        # in Python 2.6, compile() will choke on \r\n line endings. In later
+        # versions of python it's smarter, and we want binary mode to give
+        # compile() the best opportunity to do the right thing WRT text
+        # encodings.
+        if sys.version_info < (2, 7):
+            mode = 'rU'
+        else:
+            mode = 'rb'
+
+        with open(filename, mode) as f:
             codestr = f.read()
         if sys.version_info < (2, 7):
             codestr += '\n'     # Work around for Python <= 2.6
@@ -123,7 +131,18 @@ def checkRecursive(paths, reporter):
 
 
 def main(prog=None):
-    parser = OptionParser(prog=prog, version=__version__)
+    """Entry point for the script "pyflakes"."""
+    import optparse
+    import signal
+
+    # Handle "Keyboard Interrupt" and "Broken pipe" gracefully
+    try:
+        signal.signal(signal.SIGINT, lambda sig, f: sys.exit('... stopped'))
+        signal.signal(signal.SIGPIPE, lambda sig, f: sys.exit(1))
+    except ValueError:
+        pass    # SIGPIPE is not supported on Windows
+
+    parser = optparse.OptionParser(prog=prog, version=__version__)
     (__, args) = parser.parse_args()
     reporter = modReporter._makeDefaultReporter()
     if args:
